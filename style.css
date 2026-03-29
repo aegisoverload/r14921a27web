@@ -1,177 +1,183 @@
+/* CSS variables: central place to manage site colors */
 :root {
-  --bg: #f7f5ef;
-  --ink: #132328;
-  --muted: #4a5c61;
-  --card: #fffdfa;
-  --accent: #ff6f3c;
-  --accent-deep: #e85520;
-  --line: #1f3a3f22;
+  --bg: #ffffff; /* Page background color */
+  --ink: #222222; /* Main text color */
+  --muted: #666666; /* Secondary text color */
+  --card: #fafafa; /* Card background color */
+  --accent: #2f6fed; /* Primary button/highlight color */
+  --accent-deep: #2358bd; /* Hover color for primary elements */
+  --line: #dddddd; /* Border line color */
 }
 
+/* Include padding/border in an element's width/height calculation */
 * {
   box-sizing: border-box;
 }
 
+/* Remove browser default page spacing */
 html,
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0; /* Remove default outer spacing */
+  padding: 0; /* Remove default inner spacing */
 }
 
+/* Global page typography and layout baseline */
 body {
-  font-family: "Space Grotesk", sans-serif;
-  background: radial-gradient(circle at 10% -10%, #ffe7cc 0%, transparent 38%),
-    radial-gradient(circle at 90% 0%, #d8f1f0 0%, transparent 45%), var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-family: Arial, sans-serif; /* Base font for all text */
+  background: var(--bg); /* Apply page background color */
+  color: var(--ink); /* Apply default text color */
+  min-height: 100vh; /* Ensure body at least fills viewport height */
+  line-height: 1.6; /* Improve text readability */
+  overflow-x: auto; /* Allow horizontal scroll if content overflows */
 }
 
+/* Decorative background blobs are disabled in simple design mode */
 .background-shape {
-  position: fixed;
-  z-index: -1;
-  border-radius: 999px;
-  filter: blur(60px);
-  opacity: 0.45;
+  display: none; /* Hide decorative shape elements */
 }
 
 .shape-1 {
-  width: 280px;
-  height: 280px;
-  background: #ff8a5c;
-  top: -100px;
-  left: -80px;
+  display: none; /* Keep shape-1 hidden */
 }
 
 .shape-2 {
-  width: 360px;
-  height: 360px;
-  background: #66d2ce;
-  bottom: -120px;
-  right: -120px;
+  display: none; /* Keep shape-2 hidden */
 }
 
+/* Top intro block container */
 .site-header {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 5rem 1.5rem 2rem;
-  animation: floatIn 0.7s ease-out;
+  max-width: 900px; /* Limit content width for readability */
+  margin: 0 auto; /* Center the header horizontally */
+  padding: 3rem 1.5rem 1.5rem; /* Top/right-left/bottom spacing */
 }
 
+/* Small uppercase label above main title */
 .eyebrow {
-  font-family: "IBM Plex Mono", monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0;
+  font-size: 0.95rem; /* Slightly smaller than body text */
+  text-transform: uppercase; /* Convert text to uppercase */
+  color: var(--muted); /* Use secondary text color */
+  margin: 0; /* Remove default paragraph margin */
 }
 
+/* Main page title */
 h1 {
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  margin: 0.4rem 0 0.8rem;
-  line-height: 1.1;
+  font-size: clamp(2rem, 5vw, 3.6rem); /* Responsive title size */
+  margin: 0.4rem 0 0.8rem; /* Space around heading */
+  line-height: 1.1; /* Tighter line spacing for heading */
 }
 
+/* Highlighted part of the title (name/nickname) */
 .name {
-  color: var(--accent);
+  color: var(--accent); /* Apply accent color */
 }
 
+/* Subtitle/description under main title */
 .subtitle {
-  max-width: 42ch;
-  color: var(--muted);
-  margin-bottom: 1.25rem;
+  max-width: 42ch; /* Keep line length readable */
+  color: var(--muted); /* Use secondary text tone */
+  margin-bottom: 1.25rem; /* Space before CTA button */
 }
 
+/* Primary call-to-action button */
 .cta {
-  display: inline-block;
-  text-decoration: none;
-  color: white;
-  background: var(--accent);
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  font-weight: 700;
-  transition: transform 0.18s ease, background-color 0.18s ease;
+  display: inline-block; /* Let link behave like a button */
+  text-decoration: none; /* Remove underline from link */
+  color: white; /* White button text */
+  background: var(--accent); /* Button background color */
+  padding: 0.65rem 0.95rem; /* Inner button spacing */
+  border-radius: 6px; /* Slightly rounded corners */
+  font-weight: 600; /* Semi-bold text */
+  transition: background-color 0.15s ease; /* Smooth hover color change */
 }
 
 .cta:hover {
-  transform: translateY(-2px);
-  background: var(--accent-deep);
+  background: var(--accent-deep); /* Darker color on hover */
 }
 
+/* Main content wrapper for sections/cards */
 main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 1.5rem 3rem;
-  display: grid;
-  gap: 1rem;
+  max-width: 900px; /* Match header width */
+  margin: 0 auto; /* Center content block */
+  padding: 0 1.5rem 3rem; /* Side spacing + bottom spacing */
+  display: grid; /* Stack sections using CSS Grid */
+  gap: 1rem; /* Space between cards */
 }
 
+/* Reusable content card style */
 .card {
-  background: color-mix(in srgb, var(--card) 88%, white 12%);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 1.15rem 1.2rem;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 15px 35px #0f1b1d10;
+  background: var(--card); /* Light card background */
+  border: 1px solid var(--line); /* Subtle border */
+  border-radius: 8px; /* Soft rounded corners */
+  padding: 1.15rem 1.2rem; /* Inner spacing for card content */
+  box-shadow: none; /* Flat style (no shadow) */
 }
 
+/* Section heading inside cards */
 h2 {
-  margin-top: 0.2rem;
-  margin-bottom: 0.6rem;
-  font-size: 1.3rem;
+  margin-top: 0.2rem; /* Tiny top spacing */
+  margin-bottom: 0.6rem; /* Space before paragraph/list */
+  font-size: 1.3rem; /* Slightly larger section title */
 }
 
+/* List formatting in interests section */
 ul {
-  margin: 0;
-  padding-left: 1.2rem;
+  margin: 0; /* Remove default top/bottom margin */
+  padding-left: 1.2rem; /* Keep bullet indentation */
 }
 
+/* Footer text area */
 footer {
-  text-align: center;
-  padding: 1.2rem;
-  color: var(--muted);
-  font-size: 0.95rem;
+  text-align: center; /* Center footer text */
+  padding: 1.2rem; /* Footer spacing */
+  color: var(--muted); /* Less emphasized text color */
+  font-size: 0.95rem; /* Slightly smaller than normal text */
 }
 
+/* Animation classes intentionally neutralized for simple style */
 .reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: revealUp 0.6s ease forwards;
+  opacity: 1; /* Keep fully visible */
+  transform: none; /* No movement transform */
+  animation: none; /* Disable reveal animation */
 }
 
 .stagger-1 {
-  animation-delay: 0.15s;
+  animation-delay: 0s; /* No stagger delay */
 }
 
 .stagger-2 {
-  animation-delay: 0.3s;
+  animation-delay: 0s; /* No stagger delay */
 }
 
+/* Kept for compatibility even though animations are disabled */
 @keyframes floatIn {
   from {
-    opacity: 0;
-    transform: translateY(18px);
+    opacity: 1; /* Start visible */
+    transform: none; /* No start transform */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* End visible */
+    transform: none; /* No end transform */
   }
 }
 
 @keyframes revealUp {
+  from {
+    opacity: 1; /* Start visible */
+    transform: none; /* No start transform */
+  }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* End visible */
+    transform: none; /* No end transform */
   }
 }
 
+/* Mobile adjustments for smaller screens */
 @media (max-width: 720px) {
   .site-header {
-    padding-top: 4rem;
+    padding-top: 4rem; /* Increase top breathing room on mobile */
   }
 
   .card {
-    padding: 1rem;
+    padding: 1rem; /* Slightly tighter card spacing */
   }
 }
