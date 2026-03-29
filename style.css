@@ -1,12 +1,12 @@
 /* CSS variables: central place to manage site colors */
 :root {
-  --bg: #ffffff; /* Page background color */
-  --ink: #222222; /* Main text color */
-  --muted: #666666; /* Secondary text color */
-  --card: #fafafa; /* Card background color */
-  --accent: #2f6fed; /* Primary button/highlight color */
-  --accent-deep: #2358bd; /* Hover color for primary elements */
-  --line: #dddddd; /* Border line color */
+  --bg: #f6f9ff; /* Page background color */
+  --ink: #162033; /* Main text color */
+  --muted: #5f6b82; /* Secondary text color */
+  --card: #ffffff; /* Card background color */
+  --accent: #2563eb; /* Primary button/highlight color */
+  --accent-deep: #1e4fb8; /* Hover color for primary elements */
+  --line: #d7e1f3; /* Border line color */
 }
 
 /* Include padding/border in an element's width/height calculation */
@@ -23,37 +23,55 @@ body {
 
 /* Global page typography and layout baseline */
 body {
-  font-family: Arial, sans-serif; /* Base font for all text */
-  background: var(--bg); /* Apply page background color */
+  font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif; /* Base font for all text */
+  background: radial-gradient(circle at 8% -10%, #e6efff 0%, transparent 40%),
+    radial-gradient(circle at 100% 5%, #e8f8ff 0%, transparent 36%), var(--bg); /* Apply page background color */
   color: var(--ink); /* Apply default text color */
   min-height: 100vh; /* Ensure body at least fills viewport height */
   line-height: 1.6; /* Improve text readability */
-  overflow-x: auto; /* Allow horizontal scroll if content overflows */
+  overflow-x: hidden; /* Prevent accidental horizontal scroll */
 }
 
-/* Decorative background blobs are disabled in simple design mode */
+/* Decorative background blobs for subtle visual depth */
 .background-shape {
-  display: none; /* Hide decorative shape elements */
+  position: fixed; /* Keep decorative shape in viewport */
+  z-index: -1; /* Render behind content */
+  border-radius: 999px; /* Circular soft shapes */
+  filter: blur(56px); /* Soft blur effect */
+  opacity: 0.35; /* Keep decoration subtle */
+  pointer-events: none; /* Ignore mouse interactions */
 }
 
 .shape-1 {
-  display: none; /* Keep shape-1 hidden */
+  display: block; /* Show decorative shape-1 */
+  width: 260px; /* Shape size */
+  height: 260px; /* Shape size */
+  background: #8ac0ff; /* Shape color */
+  top: -90px; /* Position from top */
+  left: -70px; /* Position from left */
 }
 
 .shape-2 {
-  display: none; /* Keep shape-2 hidden */
+  display: block; /* Show decorative shape-2 */
+  width: 340px; /* Shape size */
+  height: 340px; /* Shape size */
+  background: #a9f2dc; /* Shape color */
+  bottom: -130px; /* Position from bottom */
+  right: -120px; /* Position from right */
 }
 
 /* Top intro block container */
 .site-header {
   max-width: 900px; /* Limit content width for readability */
   margin: 0 auto; /* Center the header horizontally */
-  padding: 3rem 1.5rem 1.5rem; /* Top/right-left/bottom spacing */
+  padding: 4rem 1.5rem 2rem; /* Top/right-left/bottom spacing */
+  animation: floatIn 0.5s ease-out; /* Intro fade-in for header */
 }
 
 /* Small uppercase label above main title */
 .eyebrow {
   font-size: 0.95rem; /* Slightly smaller than body text */
+  letter-spacing: 0.06em; /* Add spacing between characters */
   text-transform: uppercase; /* Convert text to uppercase */
   color: var(--muted); /* Use secondary text color */
   margin: 0; /* Remove default paragraph margin */
@@ -69,6 +87,7 @@ h1 {
 /* Highlighted part of the title (name/nickname) */
 .name {
   color: var(--accent); /* Apply accent color */
+  text-shadow: 0 6px 18px #2563eb2b; /* Soft glow for highlighted name */
 }
 
 /* Subtitle/description under main title */
@@ -83,15 +102,20 @@ h1 {
   display: inline-block; /* Let link behave like a button */
   text-decoration: none; /* Remove underline from link */
   color: white; /* White button text */
-  background: var(--accent); /* Button background color */
+  background: linear-gradient(135deg, var(--accent), #3b82f6); /* Button background color */
   padding: 0.65rem 0.95rem; /* Inner button spacing */
-  border-radius: 6px; /* Slightly rounded corners */
+  border-radius: 10px; /* Slightly rounded corners */
+  border: 1px solid #1e4fb84f; /* Subtle edge definition */
   font-weight: 600; /* Semi-bold text */
-  transition: background-color 0.15s ease; /* Smooth hover color change */
+  box-shadow: 0 8px 20px #1e4fb833; /* Lift button from background */
+  transition: transform 0.16s ease, box-shadow 0.16s ease,
+    background-color 0.15s ease; /* Smooth hover interactions */
 }
 
 .cta:hover {
   background: var(--accent-deep); /* Darker color on hover */
+  transform: translateY(-1px); /* Slight raise on hover */
+  box-shadow: 0 10px 24px #1e4fb840; /* Stronger hover shadow */
 }
 
 /* Main content wrapper for sections/cards */
@@ -107,9 +131,15 @@ main {
 .card {
   background: var(--card); /* Light card background */
   border: 1px solid var(--line); /* Subtle border */
-  border-radius: 8px; /* Soft rounded corners */
+  border-radius: 14px; /* Soft rounded corners */
   padding: 1.15rem 1.2rem; /* Inner spacing for card content */
-  box-shadow: none; /* Flat style (no shadow) */
+  box-shadow: 0 12px 28px #14203a12; /* Gentle depth shadow */
+  transition: transform 0.18s ease, box-shadow 0.18s ease; /* Smooth card interactions */
+}
+
+.card:hover {
+  transform: translateY(-2px); /* Tiny lift on hover */
+  box-shadow: 0 16px 34px #14203a1f; /* Slightly stronger shadow */
 }
 
 /* Section heading inside cards */
@@ -133,41 +163,41 @@ footer {
   font-size: 0.95rem; /* Slightly smaller than normal text */
 }
 
-/* Animation classes intentionally neutralized for simple style */
+/* Reveal animation classes for gentle entrance effect */
 .reveal {
-  opacity: 1; /* Keep fully visible */
-  transform: none; /* No movement transform */
-  animation: none; /* Disable reveal animation */
+  opacity: 0; /* Start hidden for reveal animation */
+  transform: translateY(10px); /* Initial offset for reveal */
+  animation: revealUp 0.45s ease forwards; /* Enable subtle reveal animation */
 }
 
 .stagger-1 {
-  animation-delay: 0s; /* No stagger delay */
+  animation-delay: 0.08s; /* Small stagger delay */
 }
 
 .stagger-2 {
-  animation-delay: 0s; /* No stagger delay */
+  animation-delay: 0.16s; /* Small stagger delay */
 }
 
-/* Kept for compatibility even though animations are disabled */
+/* Keyframes used by header and section reveal animations */
 @keyframes floatIn {
   from {
-    opacity: 1; /* Start visible */
-    transform: none; /* No start transform */
+    opacity: 0; /* Start slightly transparent */
+    transform: translateY(8px); /* Start slightly lower */
   }
   to {
     opacity: 1; /* End visible */
-    transform: none; /* No end transform */
+    transform: translateY(0); /* End in normal position */
   }
 }
 
 @keyframes revealUp {
   from {
-    opacity: 1; /* Start visible */
-    transform: none; /* No start transform */
+    opacity: 0; /* Start transparent */
+    transform: translateY(10px); /* Start lower */
   }
   to {
     opacity: 1; /* End visible */
-    transform: none; /* No end transform */
+    transform: translateY(0); /* End in normal position */
   }
 }
 
